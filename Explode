@@ -1,0 +1,31 @@
+ArrayType Explode:
+
+data = [("Raviteja", ["Irumudi", "Idiot"]), ("Prabhas", ["Darling", "Billa"])]
+
+schema = StructType ([ StructField ("name", StringType()),
+                      StructField ("movies", ArrayType())
+                      ])
+
+df = spark.createDataFrame (data, schema)
+
+df_explode = df.select("name", explode("movies").alias("Movies_list")
+
+display(df_explode)
+
+
+
+MapType Explode:
+
+data = [("RaviTeja", {"age":"55", "city":"Hyderabad"}),
+        ("Prabhas", {"age":"45", "city":"Hyderabad"})]
+
+
+schema = StructType([
+                     StructField("Name", StringType()),
+                     StructField("Details", MapType(StringType(), StringType()))])
+
+df = spark.createDataFrame(data, schema)
+
+df_explode = df.select("name", explode("Details").alias("key", "value"))
+
+display(df_explode)
