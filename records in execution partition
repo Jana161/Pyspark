@@ -1,0 +1,6 @@
+No of records in each execution partition_id
+
+df = df.withColumn("partition_id", spark_partition_id()) \
+.groupBy("partition_id") \
+.count() \
+.orderBy(desc("partition_id"))
