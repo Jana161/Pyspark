@@ -1,3 +1,11 @@
 How to read multiple csv files:
 
+1st way: Using wildcard *.csv
+df = spark.read.format("csv").option("header", "true").load("/mnt/sales/*.csv")
+
+
+2nd way: Real all csv files from a sales folder
+df = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("/mnt/sales/")
+
+
 
