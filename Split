@@ -1,0 +1,21 @@
+Split function: used to split a string into array of strings
+
+"Ravi,Hyderabad,55"   to ["Ravi", "Hyderabad", "55"]
+
+
+Example:
+
+data = [
+    ("Ravi,Hyderabad,55",),
+    ("Prabhas,Hyderabad,45",)
+]
+
+schema = StructType([
+    StructField("details", StringType(), True)
+])
+
+df = spark.createDataFrame(data, schema)
+
+df2 = df.select(
+    split("details", ",").alias("details_array")
+)
