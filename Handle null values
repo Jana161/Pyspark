@@ -1,0 +1,14 @@
+1) Find null values in column
+df = df.filter(col("age").isNull())
+df.count()
+df.display()
+
+2) replace null values
+df = df.fillna({"name" : "unknown",
+                "age" : 0 })
+
+df = df.withColumn("age", when (col("age").isNull(), 18).otherwise(col("age")))
+
+
+3) Drop null values
+df = df.dropna(subset["age"])
