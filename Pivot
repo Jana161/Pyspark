@@ -1,0 +1,28 @@
+Pivot and Unpivot:
+
+
+Pivot example:
+
++-------+-----+-----+
+|name   |month|sales|
++-------+-----+-----+
+|Ravi   |Jan  |100  |
+|Ravi   |Feb  |200  |
+|Ravi   |Mar  |300  |
+|Prabhas|Jan  |150  |
+|Prabhas|Feb  |250  |
+|Prabhas|Mar  |350  |
++-------+-----+-----+
+
+
+df_pivot = df.groupBy("name").pivot("month").sum(sales)
+
+display(df_pivot)
+
+
++-------+---+---+---+
+|name   |Feb|Jan|Mar|
++-------+---+---+---+
+|Ravi   |200|100|300|
+|Prabhas|250|150|350|
++-------+---+---+---+
