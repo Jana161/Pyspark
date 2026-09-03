@@ -1,0 +1,25 @@
+lead and lag:
+
+employee | year | salary
+Ravi     | 2024 | 50000
+Ravi     | 2025 | 60000
+Ravi     | 2026 | 70000
+
+Find employee's previous salary:
+
+WindowSpec = Window.partitionBy("employee").orderBy(col("year"))
+
+df = df.withColumn("previous_salary", lag("salary",1).over(WindowSpec))
+
+display(df)
+
+
+
+2nd Highest Salary:
+
+WindowSpec = Window.partitionBy("department").orderBy(col("salary").desc())
+
+df_second = df.withColumn("rank", dense_rank().over(WindowSpec))
+             .filter(col("rank") == 2 )
+
+display(df_second)
